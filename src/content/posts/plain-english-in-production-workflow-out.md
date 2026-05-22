@@ -6,7 +6,7 @@ tags: ["n8n", "MCP", "AI Automation", "Claude Code"]
 draft: false
 ---
 
-I want to be upfront about something before this post becomes another MCP explainer: I am not going to tell you MCP is like USB for AI.
+I want to be upfront about something before this post becomes another MCP explainer: I am not going to tell you MCP is like USB for AI...
 
 What I'm going to do is walk through a specific setup I've been running in production, explain what it actually looks like to use it, and be honest about where it breaks down.
 

@@ -1,0 +1,57 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  wide?: boolean;
+}
+const { title, description = "Notes on building production-grade AI automation — systems, decisions, and what broke.", wide = false } = Astro.props;
+const year = new Date().getFullYear();
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#f4f1ea" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+  <link rel="alternate" type="application/rss+xml" title="Signal — mattbis blog" href="/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/global.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <nav class="nav">
+    <a class="nav__brand" href="/"><span class="dot" aria-hidden="true"></span>Matthew&nbsp;Bis</a>
+    <span class="nav__links">
+      <a href="/">Writing</a>
+      <a href="https://mattbis.com">&larr;&nbsp;Main&nbsp;site</a>
+    </span>
+  </nav>
+
+  <main id="main" class={wide ? "wrap wrap--wide" : "wrap"} style="padding-top:clamp(48px,8vw,90px);padding-bottom:clamp(48px,8vw,90px);flex:1">
+    <slot />
+  </main>
+
+  <footer class="foot">
+    <div class={wide ? "wrap wrap--wide" : "wrap"}>
+      <div class="row">
+        <span>&copy; {year} Matthew Bis — Chicago, IL</span>
+        <span class="fl">
+          <a href="https://mattbis.com">mattbis.com</a>
+          <a href="https://www.linkedin.com/in/matthewjbis/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/matthewjbis" target="_blank" rel="noopener">GitHub</a>
+          <a href="/rss.xml">RSS</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

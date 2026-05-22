@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const all = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft);
+  return all.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Base title={`${post.data.title} — Matthew Bis`} description={post.data.description}>
+  <article>
+    <a href="/" class="date" style="display:inline-block;margin-bottom:30px;text-decoration:none">&larr; All writing</a>
+
+    <header style="margin-bottom:40px;padding-bottom:34px;border-bottom:1px solid var(--line)">
+      <div class="date" style="margin-bottom:18px">
+        {fmt(post.data.pubDate)}
+        {post.data.updatedDate && <span> &middot; updated {fmt(post.data.updatedDate)}</span>}
+      </div>
+      <h1 style="font-family:var(--display);font-weight:600;font-size:clamp(2rem,5vw,3rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:20px">
+        {post.data.title}
+      </h1>
+      <p style="font-size:1.2rem;color:var(--ink-soft);line-height:1.5;max-width:56ch">{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <div class="tags" style="margin-top:24px">
+          {post.data.tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+      )}
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style is:global>
+  /* Prose styling — long-form reading, tuned to the serif body face */
+  .prose{font-size:1.12rem;line-height:1.72;color:var(--ink)}
+  .prose > * + *{margin-top:1.4em}
+  .prose h2{font-family:var(--display);font-weight:600;font-size:1.7rem;
+    letter-spacing:-.02em;line-height:1.2;margin-top:2em;margin-bottom:.2em}
+  .prose h3{font-family:var(--display);font-weight:600;font-size:1.3rem;
+    letter-spacing:-.01em;margin-top:1.8em;margin-bottom:.2em}
+  .prose a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+    transition:border-color .2s}
+  .prose a:hover{border-color:var(--accent)}
+  .prose strong{font-weight:600;color:var(--ink)}
+  .prose em{font-style:italic}
+  .prose blockquote{border-left:2px solid var(--accent);padding-left:20px;
+    font-style:italic;color:var(--ink);margin-left:0}
+  .prose ul,.prose ol{padding-left:1.4em}
+  .prose li + li{margin-top:.5em}
+  .prose code{font-family:var(--mono);font-size:.86em;background:var(--paper);
+    border:1px solid var(--line);border-radius:3px;padding:.12em .4em}
+  .prose pre{background:var(--ink);color:#e8e2d6;padding:20px 22px;border-radius:4px;
+    overflow-x:auto;font-size:.92rem;line-height:1.6}
+  .prose pre code{background:none;border:0;padding:0;color:inherit;font-size:inherit}
+  .prose hr{border:0;border-top:1px solid var(--line);margin:2.4em 0}
+  .prose img{max-width:100%;height:auto;border-radius:4px}
+</style>

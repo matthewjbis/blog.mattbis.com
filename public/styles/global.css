@@ -1,0 +1,107 @@
+/* ════════════════════════════════════════════════════════════
+   mattbis.com design system — ported verbatim so blog.mattbis.com
+   reads as the same property. Tokens, fonts, noise overlay, focus.
+   ════════════════════════════════════════════════════════════ */
+:root{
+  --bg:#f4f1ea;
+  --ink:#1a1714;
+  --ink-soft:#4a443c;
+  --ink-faint:#6e6557;
+  --line:#d8d2c6;
+  --line-soft:#e4ded2;
+  --accent:#b5341f;
+  --accent-hover:#9c2c1a;
+  --paper:#faf8f3;
+  --shadow:rgba(26,23,20,.08);
+  --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Newsreader',Georgia,serif;
+  --focus:0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  --easing:cubic-bezier(.2,.7,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:19px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;mix-blend-mode:multiply;
+}
+
+:focus{outline:none}
+:focus-visible{outline:none;box-shadow:var(--focus);border-radius:2px}
+
+.skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);
+  padding:12px 18px;font-family:var(--mono);font-size:12px;z-index:1000;border-radius:2px}
+.skip:focus{left:16px;top:16px}
+
+.wrap{max-width:760px;margin:0 auto;padding:0 7vw;width:100%}
+.wrap--wide{max-width:1080px}
+@media(max-width:640px){.wrap{padding:0 22px}}
+
+/* ─── NAV ─────────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 7vw;
+  background:color-mix(in srgb, var(--bg) 86%, transparent);
+  backdrop-filter:saturate(140%) blur(8px);
+  border-bottom:1px solid var(--line);
+  font-family:var(--mono);
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+}
+@media(max-width:640px){.nav{padding:14px 22px}}
+.nav__brand{font-weight:500;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.nav__brand .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.nav__links{display:flex;gap:6px;align-items:center}
+.nav__links a{color:var(--ink-soft);text-decoration:none;padding:10px 14px;border-radius:2px;transition:color .25s}
+.nav__links a:hover{color:var(--accent)}
+
+/* ─── FOOTER ──────────────────────────────────────── */
+.foot{
+  margin-top:auto;
+  padding:48px 0;font-family:var(--mono);font-size:12px;
+  letter-spacing:.05em;color:var(--ink-faint);
+  border-top:1px solid var(--line);
+}
+.foot .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px;align-items:center}
+@media(max-width:640px){.foot .row{flex-direction:column;align-items:flex-start;gap:18px}}
+.foot a{color:var(--ink-soft);text-decoration:none;border-bottom:1px solid var(--line);
+  padding:4px 0;transition:color .25s,border-color .25s}
+.foot a:hover{color:var(--accent);border-color:var(--accent)}
+.foot .fl{display:flex;gap:24px;flex-wrap:wrap}
+
+/* ─── SHARED TYPE BITS ────────────────────────────── */
+.eyebrow{
+  font-family:var(--mono);font-size:12.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:14px;
+}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.04em;
+  color:var(--ink-faint);border:1px solid var(--line);
+  padding:6px 12px;border-radius:2px;text-decoration:none;
+  transition:color .25s,border-color .25s,background .25s;display:inline-block}
+a.tag:hover{color:var(--ink);border-color:var(--ink-soft);background:var(--paper)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+
+.date{font-family:var(--mono);font-size:12px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-faint)}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;scroll-behavior:auto !important;
+  }
+}

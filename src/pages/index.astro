@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+// In production, drop drafts. In dev, show everything.
+const all = await getCollection('posts', ({ data }) => import.meta.env.DEV || !data.draft);
+const posts = all.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+<Base title="Matthew Bis — Writing">
+  <header style="margin-bottom:clamp(40px,7vw,72px)">
+    <div class="eyebrow" style="margin-bottom:26px">Signal &middot; the blog</div>
+    <h1 style="font-family:var(--display);font-weight:500;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.05;letter-spacing:-.03em;max-width:18ch;margin-bottom:22px">
+      Systems, the decisions behind them, and <em style="font-style:normal;color:var(--accent)">what broke</em>.
+    </h1>
+    <p style="font-size:clamp(1.05rem,2vw,1.25rem);color:var(--ink-soft);max-width:52ch;line-height:1.55">
+      Long-form notes on building automation that survives contact with reality. Written for people who build, not a recap of this week's AI headlines.
+    </p>
+  </header>
+
+  {posts.length === 0 && (
+    <p class="date">No posts yet — first one is coming.</p>
+  )}
+
+  <div class="post-list">
+    {posts.map((post) => (
+      <a class="post-row" href={`/${post.id}/`}>
+        <div class="post-row__date date">{fmt(post.data.pubDate)}</div>
+        <div class="post-row__body">
+          <h2>{post.data.title}</h2>
+          <p>{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <div class="tags" style="margin-top:16px">
+              {post.data.tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .post-list{display:grid;gap:0;border-top:1px solid var(--line)}
+  .post-row{
+    display:grid;grid-template-columns:130px 1fr;gap:30px;
+    padding:34px 0;border-bottom:1px solid var(--line);
+    text-decoration:none;color:inherit;position:relative;
+    transition:padding-left .4s var(--easing);
+  }
+  .post-row::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+    background:var(--accent);transform:scaleY(0);transform-origin:top;
+    transition:transform .5s var(--easing);
+  }
+  @media(hover:hover){
+    .post-row:hover{padding-left:18px}
+    .post-row:hover::before{transform:scaleY(1)}
+    .post-row:hover h2{color:var(--accent)}
+  }
+  .post-row__date{padding-top:7px}
+  .post-row h2{font-family:var(--display);font-weight:600;font-size:1.45rem;
+    letter-spacing:-.02em;line-height:1.2;margin-bottom:10px;transition:color .25s}
+  .post-row p{color:var(--ink-soft);font-size:1.05rem;line-height:1.55;max-width:58ch}
+  @media(max-width:640px){
+    .post-row{grid-template-columns:1fr;gap:10px;padding:28px 0}
+    .post-row__date{padding-top:0}
+    @media(hover:none){.post-row:hover{padding-left:0}}
+  }
+</style>

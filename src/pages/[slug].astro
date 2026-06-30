@@ -43,7 +43,7 @@ const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long
 
 <style is:global>
   /* Prose styling — long-form reading, tuned to the serif body face */
-  .prose{font-size:1.12rem;line-height:1.72;color:var(--ink)}
+  .prose{font-size:1.12rem;line-height:1.72;color:var(--ink);max-width:68ch}
   .prose > * + *{margin-top:1.4em}
   .prose h2{font-family:var(--display);font-weight:600;font-size:1.7rem;
     letter-spacing:-.02em;line-height:1.2;margin-top:2em;margin-bottom:.2em}

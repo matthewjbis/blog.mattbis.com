@@ -6,9 +6,7 @@ tags: ["n8n", "Marketing", "AI Automation", "RevOps"]
 draft: false
 ---
 
-Scaling up the marketing operations of an enterprise with a small team has never been more realistic.
-
-This is because the modern marketer can leverage and get the most out of the latest in AI innovation:
+The B2B marketing stack has a dirty secret: most of the expensive parts are just data transformation in a trenchcoat. You pay a human to look up a prospect, write a version of an email, paste it into a sequence, and log the result. That's not judgment — that's a pipeline. n8n is where that pipeline lives. Here's what the three layers actually do — and where they earn their cost.
 
 ## The three layers
 

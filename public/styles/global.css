@@ -13,7 +13,7 @@
   --accent-hover:#9c2c1a;
   --paper:#faf8f3;
   --shadow:rgba(26,23,20,.08);
-  --display:'Space Grotesk',-apple-system,BlinkMacSystemFont,sans-serif;
+  --display:'Instrument Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --serif:'Newsreader',Georgia,serif;
   --focus:0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
@@ -65,6 +65,7 @@ body::before{
 @media(max-width:640px){.nav{padding:14px 22px}}
 .nav__brand{font-weight:500;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
 .nav__brand .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.nav__brand-sub{color:var(--ink-faint);font-weight:400;margin-left:7px}
 .nav__links{display:flex;gap:6px;align-items:center}
 .nav__links a{color:var(--ink-soft);text-decoration:none;padding:10px 14px;border-radius:2px;transition:color .25s}
 .nav__links a:hover{color:var(--accent)}

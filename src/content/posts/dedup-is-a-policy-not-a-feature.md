@@ -1,7 +1,7 @@
 ---
 title: "Dedup is a policy, not a feature"
 description: "A CRM hygiene system that catches duplicate records before they're created, not after, and why 'merge duplicates' is the wrong problem to solve."
-pubDate: 2026-08-18
+pubDate: 2026-07-14
 tags: ["n8n", "AI Automation", "RevOps", "Architecture"]
 draft: false
 ---

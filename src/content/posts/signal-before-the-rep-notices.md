@@ -1,7 +1,7 @@
 ---
 title: "The signal, checked, before the rep ever notices"
 description: "How a buying-signal detection system decides what NOT to escalate, and the routing and verification logic that sits between a raw signal and a rep's inbox."
-pubDate: 2026-07-28
+pubDate: 2026-06-23
 tags: ["n8n", "AI Automation", "RevOps", "Architecture"]
 draft: false
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Answer only what you can cite"
 description: "Building an internal knowledge chatbot on Google Drive and a vector store, and why the retrieval layer, not the model, is where this kind of system actually lives or dies."
-pubDate: 2026-08-11
+pubDate: 2026-07-07
 tags: ["n8n", "AI Automation", "Architecture", "RAG"]
 draft: false
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Sentence in, campaign out"
 description: "A production system that turns a plain-English targeting description into a live, deduplicated outbound sequence, and the one architectural call that made it trustworthy."
-pubDate: 2026-07-21
+pubDate: 2026-06-16
 tags: ["n8n", "AI Automation", "RevOps", "Architecture"]
 draft: false
 ---

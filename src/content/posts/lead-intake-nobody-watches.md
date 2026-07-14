@@ -1,7 +1,7 @@
 ---
 title: "Lead intake nobody has to watch"
 description: "A two-stage kickoff-and-worker pattern for lead import, and why splitting 'accept the lead' from 'process the lead' is the difference between a system that scales and one that falls over during a spike."
-pubDate: 2026-08-04
+pubDate: 2026-06-30
 tags: ["n8n", "AI Automation", "RevOps", "Architecture"]
 draft: false
 ---
